@@ -1,0 +1,106 @@
+﻿{
+    "gateway":  {
+                    "mode":  "local",
+                    "port":  18799,
+                    "bind":  "loopback"
+                },
+    "agents":  {
+                   "defaults":  {
+                                    "workspace":  "./workspace",
+                                    "model":  {
+                                                  "primary":  "cerebras/moonshotai-kimi-k3.1-pro-trial"
+                                              },
+                                    "thinkingDefault":  "low",
+                                    "skipBootstrap":  false,
+                                    "skipOptionalBootstrapFiles":  [
+                                                                       "SOUL.md",
+                                                                       "USER.md",
+                                                                       "HEARTBEAT.md",
+                                                                       "IDENTITY.md"
+                                                                   ],
+                                    "contextInjection":  "always",
+                                    "startupContext":  {
+                                                           "enabled":  false
+                                                       },
+                                    "experimental":  {
+                                                         "localModelLean":  true
+                                                     },
+                                    "models":  {
+                                                   "cerebras/moonshotai-kimi-k3.1-pro-trial":  {
+                                                                                                   "params":  {
+                                                                                                                  "temperature":  0,
+                                                                                                                  "maxTokens":  2048
+                                                                                                              }
+                                                                                               }
+                                               },
+                                    "heartbeat":  {
+                                                      "every":  "24h"
+                                                  }
+                                }
+               },
+    "skills":  {
+                   "limits":  {
+                                  "maxSkillsInPrompt":  0
+                              }
+               },
+    "tools":  {
+                  "toolSearch":  false,
+                  "allow":  [
+                                "web_fetch"
+                            ],
+                  "web":  {
+                              "fetch":  {
+                                            "maxChars":  5000,
+                                            "maxCharsCap":  5000
+                                        }
+                          }
+              },
+    "plugins":  {
+                    "allow":  [
+                                  "cerebras"
+                              ],
+                    "slots":  {
+                                  "memory":  "none"
+                              }
+                },
+    "models":  {
+                   "mode":  "merge",
+                   "providers":  {
+                                     "cerebras":  {
+                                                      "baseUrl":  "https://api.cerebras.ai/v1",
+                                                      "api":  "openai-completions",
+                                                      "apiKey":  "${CEREBRAS_API_KEY}",
+                                                      "models":  [
+                                                                     {
+                                                                         "id":  "moonshotai-kimi-k3.1-pro-trial",
+                                                                         "name":  "Kimi K3.1 Pro (Cerebras)",
+                                                                         "reasoning":  true,
+                                                                         "input":  [
+                                                                                       "text",
+                                                                                       "image"
+                                                                                   ],
+                                                                         "cost":  {
+                                                                                      "input":  0,
+                                                                                      "output":  0,
+                                                                                      "cacheRead":  0,
+                                                                                      "cacheWrite":  0
+                                                                                  },
+                                                                         "compat":  {
+                                                                                        "supportsTools":  true,
+                                                                                        "supportsStrictMode":  false,
+                                                                                        "supportsUsageInStreaming":  true,
+                                                                                        "supportsReasoningEffort":  true,
+                                                                                        "supportedReasoningEfforts":  [
+                                                                                                                          "low",
+                                                                                                                          "high",
+                                                                                                                          "max"
+                                                                                                                      ]
+                                                                                    },
+                                                                         "maxTokens":  2048,
+                                                                         "contextWindow":  262144
+                                                                     }
+                                                                 ]
+                                                  }
+                                 }
+               }
+}

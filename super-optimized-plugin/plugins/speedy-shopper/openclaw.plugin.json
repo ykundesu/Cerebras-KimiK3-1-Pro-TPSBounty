@@ -1,0 +1,17 @@
+{
+  "id": "speedy-shopper",
+  "name": "Speedy Shopper",
+  "description": "Live retail store search, live link verification, compact prompt controller, and per-call token budget tuning for Santa's Speedy Shopper.",
+  "activation": {
+    "onStartup": true
+  },
+  "providers": ["cerebras-speedy"],
+  "contracts": {
+    "tools": ["search_store", "verify_links"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

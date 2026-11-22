@@ -1,0 +1,96 @@
+{
+  "gateway": {
+    "mode": "local",
+    "port": 18799,
+    "bind": "loopback"
+  },
+  "agents": {
+    "defaults": {
+      "contextInjection": "never",
+      "skipBootstrap": true,
+      "startupContext": {
+        "enabled": false
+      },
+      "experimental": {
+        "localModelLean": true
+      },
+      "model": {
+        "primary": "cerebras-speedy/moonshotai-kimi-k3.1-pro-trial"
+      },
+      "thinkingDefault": "low",
+      "models": {
+        "cerebras-speedy/moonshotai-kimi-k3.1-pro-trial": {
+          "params": {
+            "temperature": 0
+          }
+        }
+      },
+      "heartbeat": {
+        "every": "24h"
+      }
+    }
+  },
+  "skills": {
+    "limits": {
+      "maxSkillsInPrompt": 0
+    }
+  },
+  "tools": {
+    "toolSearch": false,
+    "allow": [
+      "search_store",
+      "verify_links"
+    ]
+  },
+  "plugins": {
+    "allow": [
+      "speedy-shopper",
+      "cerebras"
+    ],
+    "load": {
+      "paths": [
+        "./plugins/speedy-shopper"
+      ]
+    },
+    "slots": {
+      "memory": "none"
+    },
+    "entries": {
+      "speedy-shopper": {
+        "enabled": true,
+        "hooks": {
+          "allowPromptInjection": true,
+          "allowConversationAccess": true
+        }
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "cerebras-speedy": {
+        "baseUrl": "https://api.cerebras.ai/v1",
+        "api": "openai-completions",
+        "apiKey": "${CEREBRAS_API_KEY}",
+        "models": [
+          {
+            "id": "moonshotai-kimi-k3.1-pro-trial",
+            "name": "Kimi K3.1 Pro (Cerebras)",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "compat": {
+              "supportsTools": true,
+              "supportsStrictMode": false,
+              "supportsUsageInStreaming": true,
+              "supportsReasoningEffort": true,
+              "supportedReasoningEfforts": ["low", "high", "max"]
+            },
+            "maxTokens": 32768,
+            "contextWindow": 262144
+          }
+        ]
+      }
+    }
+  }
+}

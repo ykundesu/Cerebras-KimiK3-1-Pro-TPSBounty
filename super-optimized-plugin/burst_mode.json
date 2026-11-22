@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "afterTool": "",
+  "burstUserPrefix": "Quick status check.",
+  "forceAll": false,
+  "burstMaxTokens": 2,
+  "defaultMaxTokens": 2048,
+  "overrideTemperature": 0
+}
