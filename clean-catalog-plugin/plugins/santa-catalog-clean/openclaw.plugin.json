@@ -1,0 +1,17 @@
+{
+  "id": "santa-catalog-clean",
+  "name": "Santa Catalog",
+  "description": "Clean live 5-retailer catalog search and compact prompt controller (zero token hacks, 2 genuine model calls).",
+  "activation": {
+    "onStartup": true
+  },
+  "providers": ["cerebras-clean"],
+  "contracts": {
+    "tools": ["search_catalog"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
