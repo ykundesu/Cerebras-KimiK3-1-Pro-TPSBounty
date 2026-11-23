@@ -1,0 +1,122 @@
+{
+  "gateway": {
+    "mode": "local",
+    "port": 18799,
+    "bind": "loopback",
+    "controlUi": {
+      "sessionObserver": false
+    }
+  },
+  "agents": {
+    "defaults": {
+      "workspace": "./workspace",
+      "model": {
+        "primary": "cerebras-prefetch/moonshotai-kimi-k3.1-pro-trial"
+      },
+      "thinkingDefault": "low",
+      "userTimezone": "UTC",
+      "skipBootstrap": true,
+      "contextInjection": "never",
+      "startupContext": {
+        "enabled": false
+      },
+      "utilityModel": "",
+      "compaction": {
+        "enabled": false,
+        "memoryFlush": {
+          "enabled": false
+        }
+      },
+      "experimental": {
+        "localModelLean": false
+      },
+      "models": {
+        "cerebras-prefetch/moonshotai-kimi-k3.1-pro-trial": {
+          "params": {
+            "temperature": 0,
+            "maxTokens": 260,
+            "parallel_tool_calls": null,
+            "streaming": true
+          }
+        }
+      },
+      "heartbeat": {
+        "every": "0m"
+      }
+    }
+  },
+  "skills": {
+    "limits": {
+      "maxSkillsInPrompt": 0,
+      "maxSkillsPromptChars": 0
+    }
+  },
+  "tools": {
+    "toolSearch": false,
+    "codeMode": false,
+    "profile": "minimal",
+    "allow": []
+  },
+  "plugins": {
+    "allow": [
+      "santa-prefetch-1call",
+      "cerebras"
+    ],
+    "load": {
+      "paths": [
+        "./plugins/santa-prefetch-1call"
+      ]
+    },
+    "slots": {
+      "memory": "none"
+    },
+    "entries": {
+      "santa-prefetch-1call": {
+        "enabled": true,
+        "hooks": {
+          "allowPromptInjection": true,
+          "allowConversationAccess": true
+        }
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "cerebras-prefetch": {
+        "baseUrl": "https://api.cerebras.ai/v1",
+        "api": "openai-completions",
+        "apiKey": "${CEREBRAS_API_KEY}",
+        "models": [
+          {
+            "id": "moonshotai-kimi-k3.1-pro-trial",
+            "name": "Kimi K3.1 Pro (Cerebras)",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "compat": {
+              "supportsTools": false,
+              "supportsStrictMode": false,
+              "supportsUsageInStreaming": true,
+              "supportsReasoningEffort": true,
+              "supportedReasoningEfforts": [
+                "low",
+                "high",
+                "max"
+              ]
+            },
+            "maxTokens": 260,
+            "contextWindow": 262144
+          }
+        ]
+      }
+    }
+  }
+}

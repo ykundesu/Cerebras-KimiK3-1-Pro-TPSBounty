@@ -20,6 +20,13 @@
       "startupContext": {
         "enabled": false
       },
+      "utilityModel": "",
+      "compaction": {
+        "enabled": false,
+        "memoryFlush": {
+          "enabled": false
+        }
+      },
       "experimental": {
         "localModelLean": false
       },
@@ -27,20 +34,21 @@
         "cerebras-clean/moonshotai-kimi-k3.1-pro-trial": {
           "params": {
             "temperature": 0,
-            "maxTokens": 512,
-            "parallel_tool_calls": true,
+            "maxTokens": 384,
+            "parallel_tool_calls": null,
             "streaming": true
           }
         }
       },
       "heartbeat": {
-        "every": "24h"
+        "every": "0m"
       }
     }
   },
   "skills": {
     "limits": {
-      "maxSkillsInPrompt": 0
+      "maxSkillsInPrompt": 0,
+      "maxSkillsPromptChars": 0
     }
   },
   "tools": {
@@ -85,14 +93,25 @@
             "id": "moonshotai-kimi-k3.1-pro-trial",
             "name": "Kimi K3.1 Pro (Cerebras)",
             "reasoning": true,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
             "compat": {
               "supportsTools": true,
               "supportsStrictMode": false,
               "supportsUsageInStreaming": true,
               "supportsReasoningEffort": true,
-              "supportedReasoningEfforts": ["low", "high", "max"]
+              "supportedReasoningEfforts": [
+                "low",
+                "high",
+                "max"
+              ]
             },
             "maxTokens": 512,
             "contextWindow": 262144

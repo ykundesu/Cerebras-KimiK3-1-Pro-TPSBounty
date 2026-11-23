@@ -1,0 +1,14 @@
+{
+  "id": "santa-prefetch-1call",
+  "name": "Santa Live Prefetch",
+  "description": "1-call live 5-retailer holiday gift catalog prefetch via native before_prompt_build hook + pure-ASCII DFlash2 canonicalization.",
+  "activation": {
+    "onStartup": true
+  },
+  "providers": ["cerebras-prefetch"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
